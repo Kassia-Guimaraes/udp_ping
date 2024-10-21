@@ -12,7 +12,7 @@ if len(sys.argv) != 3:
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 
 # To set waiting time of one second for reponse from server
-clientSocket.settimeout(5)
+clientSocket.settimeout(4)
 
 # Declare server's socket address
 remoteAddr = (sys.argv[1], int(sys.argv[2]))
