@@ -6,32 +6,33 @@ from socket import *
 if len(sys.argv) != 3:
     print("Usage: python UDPPingerClient <server ip address> <server port no>")
     sys.exit()
-    
+
 # Create a UDP socket
 # Notice the use of SOCK_DGRAM for UDP packets
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 
 # To set waiting time of one second for reponse from server
-clientSocket.settimeout(1)
+clientSocket.settimeout(5)
 
 # Declare server's socket address
 remoteAddr = (sys.argv[1], int(sys.argv[2]))
 
 # Ping ten times
 for i in range(10):
-    
+
     sendTime = time.time()
     message = 'PING ' + str(i + 1) + " " + str(time.strftime("%H:%M:%S"))
     clientSocket.sendto(message.encode("utf-8"), remoteAddr)
-    
+
     try:
         data, server = clientSocket.recvfrom(1024)
         recdTime = time.time()
         rtt = recdTime - sendTime
         print("Message Received", data.decode("utf-8"))
-        print("Round Trip Time", rtt)
-        print
-    
+        print(f"Round Trip Time, {rtt: .2f}")
+
     except timeout:
-        print('REQUEST TIMED OUT')
-        print
+        print('\033[31mREQUEST TIMED OUT\033[0;0m')
+
+print("Closing the client socket...")
+clientSocket.close()
