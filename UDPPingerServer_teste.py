@@ -28,7 +28,7 @@ while True:
         continue  # The message is lost
 
     if 4 <= rand <= 6:
-        delay = random.uniform(1, 3)
+        delay = random.uniform(1, 4)
         print(f"\033[36mIntroducing a delay of {
               delay:.2f} seconds for the {message}\033[0;0m")
         time.sleep(delay)
