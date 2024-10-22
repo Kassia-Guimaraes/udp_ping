@@ -24,15 +24,14 @@ while True:
     message = message.upper()
 
     if rand < 3:
-        print(f"\033[31mThe Message {message} is lost.\033[0;0m")
+        print(f"\033[31mThe Message {message} is lost, for {address}\033[0;0m")
         continue  # The message is lost
 
     if 4 <= rand <= 6:
         delay = random.uniform(1, 4)
-        print(f"\033[36mIntroducing a delay of {
-              delay:.2f} seconds for the {message}\033[0;0m")
+        print(f"\033[36mIntroducing a delay of {delay:.2f} seconds for the {message}\033[0;0m")
         time.sleep(delay)
 
     # the server responds
     serverSocket.sendto(message.encode("utf-8"), address)
-    print(f"Message sent {message}")
+    print(f"Message sent {message}, for {address}")
