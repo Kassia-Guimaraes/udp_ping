@@ -24,7 +24,7 @@ while True:
     message = message.upper()
 
     if rand < 3:
-        print(f"\033[31mThe Message {message} is lost.\033[0;0m")
+        print(f"\033[31mThe Message {message} for {address} is lost.\033[0;0m")
         continue  # The message is lost
 
     if 4 <= rand <= 6:
@@ -35,4 +35,4 @@ while True:
 
     # the server responds
     serverSocket.sendto(message.encode("utf-8"), address)
-    print(f"Message sent {message}")
+    print(f"Message sent {message}, for {address}")
